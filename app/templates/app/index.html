@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+    <meta charset="UTF8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user registration </title>
+    </head>
+<body>
+    <h1>Count page</h1>
+    <script>
+        var ws = new WebSocket('ws://127.0.0.1:8000/ws/sc/')
+        //var ws = new WebSocket('ws://127.0.0.1:8000/ws/ac/')
+        ws.onopen = function () {
+            console.log('WebSocket connection open.......')
+            ws.send('Message from client......')
+        }
+        // When message is received from server, this will be executed
+        // and sent data is avilable here in 'event'
+        ws.onmessage = function (event) {
+            console.log('Message received from server.....', event)
+        }
+        ws.onerror = function (event) {
+            console.log('WebSocket error occured.....', event)
+        }
+        ws.onclose = function (event) {
+            console.log('WebSocket connection closed.....', event)
+        }
+
+        // perform similar task using event
+        // when websocket connection is opened, this event will be fired
+        // Syntax: websocket_obj.addEventListener('event_name', () => {})
+        //ws.addEventListener('open', (event) => {
+            //console.log('WebSocket connection open.......')
+            //ws.send('Message from client......', event)
+        //})
+        //ws.addEventListener('message', (event) => {
+            //console.log('Message received from server.......', event)
+        //})
+        // When error is occured, this event will be fired
+        //ws.addEventListener('error', (event) => {
+            //console.log('WebSocket error occured.....', event)
+        //})
+        // When WebSocket connection is closed, this event will be fired
+        //ws.addEventListener('close', (event) => {
+            //console.log('WebSocket connection is closed.....', event)
+        //})
+    </script>
+</body>
+</html>
